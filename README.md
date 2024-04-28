@@ -8,7 +8,7 @@
 
 ## Descrição
 
-Este repositório documenta minha participação no processo seletivo do 1º semestre de 2024 para a empresa júnior ESTAT. O processo consistiu em semanas de atividades nas diretorias de Marketing, Comercial, Projetos e Gestão, juntamente com a conclusão de um Projeto Fantasma. 
+Este repositório documenta minha participação no processo seletivo do 1º semestre de 2024 para a empresa júnior ESTAT. O processo consistE em semanas de atividades nas diretorias de Marketing, Comercial, Projetos e Gestão, juntamente com a conclusão de um Projeto Fantasma (Relatório Estatístico). 
 
 ## Motivação
 
