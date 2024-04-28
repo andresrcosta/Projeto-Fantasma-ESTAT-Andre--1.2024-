@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="scooby_ai.jpeg" alt="GHOST PROJECT WARNER BROS" width="150">
+</p>
+<h1 align="center"><strong>PROJETO FANTASMA - ANDRÉ (PS 1.2024 - ESTAT UNB)</strong></h1>
+
 
 # Análise para o shopping da Barbie
 
