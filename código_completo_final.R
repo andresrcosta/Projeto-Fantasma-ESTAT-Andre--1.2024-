@@ -45,6 +45,18 @@ theme_estat <- function(...) {
   )
 }
 
+#############
+# Diretório #
+#############
+
+setwd("")
+
+#######################
+# IMPORTANDO OS DADOS #
+#######################
+
+dados <- read.csv("banco_final.csv", encoding = "UTF-8")
+
 # Duplicando o dataset para não corromper os dados originais (importados) em caso de erro
 
 dados_analise_1 <-dados
@@ -105,41 +117,3 @@ ggplot(contagem_formato) +
   labs(x = "Décadas", y = "Quantidade dos tipos de lançamento",colour= "Formato de Lançamento") +
   theme_estat()
 ggsave("formato_linhas_multivariado.pdf", width = 158, height = 93, units = "mm")
-
-#####################################################
-###     ANALISANDO AS DECADAS SEPARADAMENTE       ###
-### GRAFICO DE BARRAS MULTIVARIADO COM FREQUENCIA ###
-#####################################################
-
-# Função para criar gráficos
-plot_grafico <- function(data, filename, limits, breaks) {
-  contagem_formato_porcentagem <- data %>%
-    group_by(format, Decada) %>%
-    summarise(freq = n()) %>%
-    mutate(
-      freq_relativa = round(freq / sum(freq) * 100, 1)
-    )
-  
-  porcentagens <- str_c(contagem_formato_porcentagem$freq_relativa, "%") %>% str_replace("\\.", ",")
-  legendas <- str_squish(str_c(contagem_formato_porcentagem$freq, " (", porcentagens, ")"))
-  
-  p <- ggplot(contagem_formato_porcentagem) +
-    aes(x = Decada, y = freq, fill = format, label = legendas) +
-    geom_col(position = position_dodge2(preserve = "single", padding = 0)) +
-    geom_text(position = position_dodge(width = .9), vjust = -0.5, hjust = 0.5, size = 3) +
-    labs(x = "Décadas", y = "Quantidades dos tipos de lançamentos", fill = "Formato de Lançamento") +
-    scale_y_continuous(limits = limits, breaks = breaks) +
-    theme_estat()
-  
-  ggsave(filename, plot = p, width = 158, height = 93, units = "mm")
-}
-
-# Gerar gráficos
-dados_analise_1 %>%
-  filter(ano < 2000) %>%
-  plot_grafico(filename = "colunas_multivariado_com_frequencia_1.pdf", limits = c(0, 180), breaks = seq(0, 180, by = 40))
-
-dados_analise_1 %>%
-  filter(ano > 1999) %>%
-  plot_grafico(filename = "colunas_multivariado_com_frequencia_2.pdf", limits = c(0, 140), breaks = seq(0, 140, by = 40))
-
