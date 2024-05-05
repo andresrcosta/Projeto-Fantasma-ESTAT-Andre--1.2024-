@@ -4,7 +4,7 @@
 
 
 # Lista de pacotes necessários
-pacotes <- c("xtable", "tidyverse", "stringr", "purrr")
+pacotes <- c("xtable", "tidyverse", "stringr", "purrr","nortest")
 
 # Verificar e carregar pacotes ausentes
 pacotes_faltantes <- pacotes[!(pacotes %in% installed.packages()[,"Package"])]
