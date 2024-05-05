@@ -17,6 +17,16 @@ unique(dados_analise_1$format)
 
 table(dados_analise_1$format)
 
+# Renomeando os valores da coluna "format"
+
+dados_analise_1 <- dados_analise_1 %>%
+  mutate(format = case_when(
+    format == "Serie" ~ "Série",
+    format == "CrossOver" ~ "CrossOver",
+    format == "Movie" ~ "Filme",
+    TRUE ~ format  # Mantém os valores que não correspondem a nenhum dos acima
+  ))
+
 # Criando uma coluna "ano" para ordenar o dataset por décadas
 
 dados_analise_1$ano <- as.numeric(format(as.Date(dados_analise_1$date_aired), "%Y"))
