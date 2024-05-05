@@ -21,3 +21,4 @@ Software RSTUDIO 4.3.3
 ## Análises realizadas
 
 1. Número de lançamentos a cada década por formato de lançamento.
+2. Variação da nota IMDB por temporada dos episódios.
