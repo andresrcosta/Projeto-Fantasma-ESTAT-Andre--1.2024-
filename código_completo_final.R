@@ -4,15 +4,17 @@
 
 
 # Lista de pacotes necessários
+
 pacotes <- c("xtable", "tidyverse", "stringr", "purrr","nortest")
 
-# Verificar e carregar pacotes ausentes
+# Verificando e carregando pacotes ausentes
+
 pacotes_faltantes <- pacotes[!(pacotes %in% installed.packages()[,"Package"])]
+
 if (length(pacotes_faltantes) > 0) {
   install.packages(pacotes_faltantes, dependencies = TRUE)
 }
 
-# Carregar pacotes
 lapply(pacotes, require, character.only = TRUE)
 
 #######################################
