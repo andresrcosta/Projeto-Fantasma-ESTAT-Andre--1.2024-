@@ -168,9 +168,8 @@ ggplot(dados_serie) +
   aes(x = season, y = imdb) +
   geom_boxplot(fill = c("#A11D21"), width = 0.5) +
   stat_summary(
-    fun = "mean", geom = "point", shape = 23, size = 3, fill = "white"
-  ) +
-  labs(x = "Temporadas dos episódios", y = "Nota imbdb") +
+    fun = "mean", geom = "point", shape = 23, size = 3, fill = "white") +
+  labs(x = "Temporadas dos episódios", y = "Nota IMDB") +
   theme_estat()
 ggsave("box_multi_imdb.pdf", width = 158, height = 93, units = "mm")
 
@@ -180,23 +179,33 @@ resultado_teste_norm_analise_2 <- ad.test(dados_serie$imdb)
 
 print(resultado_teste_norm_analise_2)
 
+# Teste de Homogeneidade de Variância de Bartlett
+
+resultado_bartlett <- bartlett.test(imdb ~ season, data = dados_serie)
+
+print(resultado_bartlett)
+
 # Anova para a nota IMDP por temporada
 
 modelo_anova <- aov(imdb ~ season, data = dados_serie)
 
 summary(modelo_anova)
 
-# Gerando o quadro para escrever o texto de análise.
+# quadro
 
-quadro_2 <- dados_serie %>%
-  group_by(season) %>%
-  summarize(
-    max_nota = max(imdb),
-    media_nota = mean(imdb),
-    mediana_nota = median(imdb),
-    desvio_padrao_nota = sd(imdb)
-  )
-print(quadro_2)
+quadro_resumo <- dados_serie %>%
+  group_by( season ) %>% # caso mais de uma categoria
+  summarize (Média = round(mean(imdb),2),
+             `Desvio Padrão ` = round(sd(imdb),2),
+             `Variância ` = round(var(imdb),2),
+             `Mínimo ` = round(min(imdb),2),
+             `1º Quartil ` = round(quantile(imdb , probs = .25),2),
+             Mediana = round(quantile(imdb , probs = .5),2),
+             `3º Quartil ` = round(quantile(imdb , probs = .75),2),
+             `Máximo ` = round(max(imdb),2)) %>% t() %>% as.data.frame () 
+
+xtable :: xtable(quadro_resumo)
+
 
 #################
 ### ANALISE 3 ###
