@@ -23,3 +23,4 @@ Software RSTUDIO 4.3.3
 1. Número de lançamentos a cada década por formato de lançamento.
 2. Variação da nota IMDB por temporada dos episódios.
 3. Top 3 terrenos mais frequentes pela ativação da armadilha.
+4. Relação entre as notas IMDB e engajamento.
