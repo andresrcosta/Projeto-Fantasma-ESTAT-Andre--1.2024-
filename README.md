@@ -24,3 +24,4 @@ Software RSTUDIO 4.3.3
 2. Variação da nota IMDB por temporada dos episódios.
 3. Top 3 terrenos mais frequentes pela ativação da armadilha.
 4. Relação entre as notas IMDB e engajamento.
+5. Variação da nota de engajamento pelo personagem que conseguiu capturar o monstro.
