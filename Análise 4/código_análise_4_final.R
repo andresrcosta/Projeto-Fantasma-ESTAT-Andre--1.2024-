@@ -25,7 +25,7 @@ ggsave("disp_uni_analise_4.pdf", width = 158, height = 93, units = "mm")
 # Definindo uma função para realizar o teste e exibir os resultados
 
 teste_normalidade_analise_4 <- function(dados, coluna) {
-  resultado_teste <- ad.test(dados[[coluna]])
+  resultado_teste <- shapiro.test(dados[[coluna]])
   print(resultado_teste)
 }
 
@@ -38,3 +38,30 @@ teste_normalidade_analise_4(dados_analise_4, "engagement")
 
 teste_de_correlacao_4 <- cor.test(dados_analise_4$imdb, dados_analise_4$engagement, method = "pearson")
 print(teste_correlacao_de_correlacao_4)
+
+# Quadros
+
+
+quadro_resumo_imdb <- dados %>%
+  summarize (Média = round(mean(imdb),2),
+             `Desvio Padrão ` = round(sd(imdb),2),
+             `Variância ` = round(var(imdb),2),
+             `Mínimo ` = round(min(imdb),2),
+             `1º Quartil ` = round(quantile(imdb , probs = .25),2),
+             Mediana = round(quantile(imdb , probs = .5),2),
+             `3º Quartil ` = round(quantile(imdb , probs = .75),2),
+             `Máximo ` = round(max(imdb),2)) %>% t() %>% as.data.frame() 
+
+xtable :: xtable(quadro_resumo_imdb)
+
+quadro_resumo_engajamento <- dados %>%
+  summarize (Média = round(mean(engagement),2),
+             `Desvio Padrão ` = round(sd(engagement),2),
+             `Variância ` = round(var(engagement),2),
+             `Mínimo ` = round(min(engagement),2),
+             `1º Quartil ` = round(quantile(engagement , probs = .25),2),
+             Mediana = round(quantile(engagement , probs = .5),2),
+             `3º Quartil ` = round(quantile(engagement , probs = .75),2),
+             `Máximo ` = round(max(engagement),2)) %>% t() %>% as.data.frame()
+
+xtable :: xtable(quadro_resumo_engajamento)
