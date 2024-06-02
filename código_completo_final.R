@@ -171,11 +171,12 @@ ggplot(dados_serie) +
     fun = "mean", geom = "point", shape = 23, size = 3, fill = "white") +
   labs(x = "Temporadas dos episódios", y = "Nota IMDB") +
   theme_estat()
+
 ggsave("box_multi_imdb.pdf", width = 158, height = 93, units = "mm")
 
 # Testando a normalidade dos dados para aplicar ANOVA
 
-resultado_teste_norm_analise_2 <- ad.test(dados_serie$imdb)
+resultado_teste_norm_analise_2 <- shapiro.test(dados_serie$imdb)
 
 print(resultado_teste_norm_analise_2)
 
@@ -205,7 +206,6 @@ quadro_resumo <- dados_serie %>%
              `Máximo ` = round(max(imdb),2)) %>% t() %>% as.data.frame () 
 
 xtable :: xtable(quadro_resumo)
-
 
 #################
 ### ANALISE 3 ###
