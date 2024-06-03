@@ -410,7 +410,7 @@ processar_coluna <- function(coluna_nome, nome_capturador) {
 # Listando das colunas de interesse e seus respectivos nomes de capturador formatados
 
 colunas_interesse <- c("caught_fred", "caught_daphnie", "caught_velma", "caught_shaggy", "caught_scooby", "caught_other", "caught_not")
-nomes_capturadores <- c("Fred", "Daphnie", "Velma", "Salsicha", "Scooby", "Outro", "Não capturado")
+nomes_capturadores <- c("Fred", "Daphnie", "Velma", "Salsicha", "Scooby", "Outro", "Nenhum")
 
 # Processando cada coluna
 for (i in 1:length(colunas_interesse)) {
@@ -443,4 +443,3 @@ ggplot(novo_dataset) +
   labs(x = "Personagem que capturou o monstro", y = "Enagjamento do episódio") +
   theme_estat()
 ggsave("box_bi_ultimo.pdf", width = 158, height = 93, units = "mm")
-
